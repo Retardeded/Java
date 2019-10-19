@@ -221,7 +221,6 @@ public class Matrix {
 
 }
 
-
 System.out.print("Enter matrix n x m: ");
         int n = input.nextInt();
         int m = input.nextInt();
@@ -230,18 +229,18 @@ System.out.print("Enter matrix n x m: ");
         {
             matrix.data[i] = input.nextDouble();
         }
-        System.out.print(matrix);
+        System.out.print(matrix + "\n");
 
-System.out.print("Enter matrix n x m: ");
+        System.out.print("Enter matrix n x m: ");
         int a = input.nextInt();
         int b = input.nextInt();
         Matrix matrix2 = new Matrix(a,b);
         for(int i = 0; i < a*b; i++)
         {
-        matrix2.data[i] = input.nextDouble();
+            matrix2.data[i] = input.nextDouble();
         }
-        System.out.print(matrix2);
+        System.out.print(matrix2 + "\n");
 
 
 
-        System.out.print("Multiplication (m1 x m2) result: " + matrix.dot(matrix2));
+        System.out.print("Multiplication (m1 x m2) result: " + matrix.dot(matrix2) + "\n");
