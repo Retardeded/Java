@@ -12,6 +12,8 @@ public class Matrix {
     Matrix(double[][] d){
         this.rows = d.length;
         this.cols = d[0].length;
+        data = new double[rows*cols];
+
         int index = 0;
         int maxColumns = 0;
         for(int i = 0; i < rows; i++)
@@ -26,7 +28,7 @@ public class Matrix {
         {
             for(int j = 0; j < maxColumns; j++)
             {
-                if(d[i].length < j)
+                if(d[i].length > j)
                 {
                     data[index] = d[i][j];
                 }
@@ -63,7 +65,7 @@ public class Matrix {
     void set (int r,int c, double value)
     {
         if(r < rows && c < cols)
-        data[r*cols+c] = value;
+            data[r*cols+c] = value;
     }
 
     public String toString(){
@@ -73,11 +75,15 @@ public class Matrix {
             buf.append("[");
             for(int j = 0; j < cols; j++)
             {
-                buf.append(data[i*rows+j]);
+                buf.append(data[i*cols+j]);
                 if(j+1 < cols)
                     buf.append(",");
                 else
-                    buf.append("] \n");
+                {
+                    buf.append("]");
+                    if(i+1 < rows)
+                        buf.append(" \n");
+                }
             }
         }
         buf.append("]");
@@ -219,9 +225,75 @@ public class Matrix {
         return a;
     }
 
-}
+    Matrix dot(Matrix m)
+    {
+        if(rows != m.cols || cols != m.rows)
+            throw new RuntimeException(String.format("%d x %d matrix can't be multiplied through %d x %d",rows,cols,m.rows,m.cols));
 
-System.out.print("Enter matrix n x m: ");
+        Matrix a = new Matrix(rows, m.cols);
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                double value = 0;
+                for(int k = 0; k < m.rows; k++)
+                {
+                    value += get(i,k)*m.get(k,j);
+                }
+                a.set(i,j, value);
+            }
+        }
+        return  a;
+    }
+
+    public static void main(String[] args) {
+
+        java.util.Scanner input = new java.util.Scanner(System.in);
+
+
+        int c = 3;
+        int d = 2;
+
+        double[][] array = new double[c][d];
+        double[][] array2 = new double[d][c];
+        for(int i = 0; i < c ; i++)
+        {
+            for(int j = 0; j < d; j++)
+            {
+                array[i][j] = 3.0*(j+2);
+                array2[j][i] = 2.0*(i+3);
+            }
+        }
+
+        for(int i = 0; i < c ; i++)
+        {
+            for(int j = 0; j < d; j++)
+            {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+
+        for(int i = 0; i < d ; i++)
+        {
+            for(int j = 0; j < c; j++)
+            {
+                System.out.print(array2[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+
+        Matrix mat1 = new Matrix(array);
+        Matrix mat2 = new Matrix(array2);
+
+        System.out.print(mat1 + "\n");
+        System.out.print(mat2 + "\n");
+
+        System.out.print("Multiplication (m1 x m2) result: " + mat2.dot(mat1) + "\n");
+
+        System.out.print("Enter matrix n x m: ");
         int n = input.nextInt();
         int m = input.nextInt();
         Matrix matrix = new Matrix(n,m);
@@ -244,3 +316,8 @@ System.out.print("Enter matrix n x m: ");
 
 
         System.out.print("Multiplication (m1 x m2) result: " + matrix.dot(matrix2) + "\n");
+
+    }
+
+}
+
