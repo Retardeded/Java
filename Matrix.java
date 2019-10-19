@@ -220,3 +220,28 @@ public class Matrix {
     }
 
 }
+
+
+System.out.print("Enter matrix n x m: ");
+        int n = input.nextInt();
+        int m = input.nextInt();
+        Matrix matrix = new Matrix(n,m);
+        for(int i = 0; i < n*m; i++)
+        {
+            matrix.data[i] = input.nextDouble();
+        }
+        System.out.print(matrix);
+
+System.out.print("Enter matrix n x m: ");
+        int a = input.nextInt();
+        int b = input.nextInt();
+        Matrix matrix2 = new Matrix(a,b);
+        for(int i = 0; i < a*b; i++)
+        {
+        matrix2.data[i] = input.nextDouble();
+        }
+        System.out.print(matrix2);
+
+
+
+        System.out.print("Multiplication (m1 x m2) result: " + matrix.dot(matrix2));
