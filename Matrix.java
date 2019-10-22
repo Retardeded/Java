@@ -10,9 +10,6 @@ public class Matrix {
     }
 
     Matrix(double[][] d){
-        this.rows = d.length;
-        this.cols = d[0].length;
-        data = new double[rows*cols];
 
         int index = 0;
         int maxColumns = 0;
@@ -24,9 +21,13 @@ public class Matrix {
             }
         }
 
+        this.rows = d.length;
+        this.cols = maxColumns;
+        data = new double[rows*cols];
+
         for(int i = 0; i < rows; i++)
         {
-            for(int j = 0; j < maxColumns; j++)
+            for(int j = 0; j < cols; j++)
             {
                 if(d[i].length > j)
                 {
@@ -320,4 +321,3 @@ public class Matrix {
     }
 
 }
-
