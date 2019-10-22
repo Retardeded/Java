@@ -1,0 +1,116 @@
+
+import org.junit.Assert;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MatrixTest {
+
+    @org.junit.jupiter.api.Test
+    void matrixRows(int rows, int cols) {
+        int row = 2;
+        int col = 2;
+        Matrix matrix = new Matrix(row,col);
+        Assert.assertTrue(matrix.rows == row && matrix.cols == col);
+    }
+
+    @org.junit.jupiter.api.Test
+    void matrixTable(){
+        int numberOfZeros = 2;
+        int numberOfRows = 2;
+        int numberOfCols = 3;
+        Matrix matrix = new Matrix(new double[][]{{1},{1,2,4}});
+        double [][] x = matrix.asArray();
+        Assert.assertTrue(x.length == numberOfRows && x[0].length == numberOfCols);
+        int counter = 0;
+        for(int i = 0; i < x.length; i++)
+        {
+            for(int j = 0; j < x[0].length; j++)
+            {
+                if(x[i][j] == 0)
+                    counter++;
+            }
+        }
+
+        Assert.assertTrue(numberOfZeros == counter);
+    }
+
+    @org.junit.jupiter.api.Test
+    void asArray() {
+        Matrix matrix = new Matrix(2,2);
+        double [][] x = matrix.asArray();
+        Assert.assertTrue(matrix.rows == x.length && matrix.cols == x[0].length);
+    }
+
+    @org.junit.jupiter.api.Test
+    void get() {
+        double val = 2.5;
+        Matrix matrix =  new Matrix(2,2);
+        matrix.set(1,1,val);
+        Assert.assertTrue(val == matrix.get(1,1) );
+    }
+
+    @org.junit.jupiter.api.Test
+    void set() {
+        double val = 2.5;
+        Matrix matrix =  new Matrix(2,2);
+        matrix.set(1,1,val);
+        Assert.assertTrue(val == matrix.get(1,1) );
+    }
+
+    @org.junit.jupiter.api.Test
+    void testToString() {
+        int numberOfCommas;
+        int numberOfBracekts;
+        Matrix matrix = new Matrix(new double[][]{{1},{1,2,4}});
+        String matrixString = matrix.toString();
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void reshape() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void shape() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void add() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void sub() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void mul() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void div() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void testAdd() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void testSub() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void testMul() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void testDiv() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void dot() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void main() {
+    }
+}
