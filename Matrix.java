@@ -10,6 +10,7 @@ public class Matrix {
     }
 
     Matrix(double[][] d){
+        this.rows = d.length;
 
         int index = 0;
         int maxColumns = 0;
@@ -21,7 +22,6 @@ public class Matrix {
             }
         }
 
-        this.rows = d.length;
         this.cols = maxColumns;
         data = new double[rows*cols];
 
@@ -253,8 +253,8 @@ public class Matrix {
         java.util.Scanner input = new java.util.Scanner(System.in);
 
 
-        int c = 3;
-        int d = 2;
+        int c = 2;
+        int d = 3;
 
         double[][] array = new double[c][d];
         double[][] array2 = new double[d][c];
@@ -294,30 +294,28 @@ public class Matrix {
 
         System.out.print("Multiplication (m1 x m2) result: " + mat2.dot(mat1) + "\n");
 
-        System.out.print("Enter matrix n x m: ");
-        int n = input.nextInt();
-        int m = input.nextInt();
-        Matrix matrix = new Matrix(n,m);
-        for(int i = 0; i < n*m; i++)
+        Matrix matrix = new Matrix(new double[][]{{1},{1,2,4}});
+        double [][] x = matrix.asArray();
+        int counter = 0;
+        for(int i = 0; i < x.length; i++)
         {
-            matrix.data[i] = input.nextDouble();
+            for(int j = 0; j < x[0].length; j++)
+            {
+                System.out.print(x[i][j] + " ");
+                if(x[i][j] == 0)
+                    counter++;
+            }
+            System.out.print("\n");
         }
-        System.out.print(matrix + "\n");
 
-        System.out.print("Enter matrix n x m: ");
-        int a = input.nextInt();
-        int b = input.nextInt();
-        Matrix matrix2 = new Matrix(a,b);
-        for(int i = 0; i < a*b; i++)
-        {
-            matrix2.data[i] = input.nextDouble();
-        }
-        System.out.print(matrix2 + "\n");
-
-
-
-        System.out.print("Multiplication (m1 x m2) result: " + matrix.dot(matrix2) + "\n");
+        double val = 2.5;
+        Matrix m=  new Matrix(3,3);
+        m.set(2,2,val);
+        System.out.print(m.toString() + "\n");
+        m.reshape(1,9);
+        System.out.print(m.toString() + "\n");
 
     }
 
 }
+
