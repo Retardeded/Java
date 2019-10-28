@@ -1,20 +1,19 @@
-
 import org.junit.Assert;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class MatrixTest {
 
-    @org.junit.jupiter.api.Test
-    void matrixRows(int rows, int cols) {
+    @org.junit.Test
+    public void matrixRows() {
         int row = 2;
         int col = 2;
         Matrix matrix = new Matrix(row,col);
         Assert.assertTrue(matrix.rows == row && matrix.cols == col);
     }
 
-    @org.junit.jupiter.api.Test
-    void matrixTable(){
+    @org.junit.Test
+    public void matrixTable() {
         int numberOfZeros = 2;
         int numberOfRows = 2;
         int numberOfCols = 3;
@@ -34,83 +33,97 @@ public class MatrixTest {
         Assert.assertTrue(numberOfZeros == counter);
     }
 
-    @org.junit.jupiter.api.Test
-    void asArray() {
+    @org.junit.Test
+    public void asArray() {
         Matrix matrix = new Matrix(2,2);
         double [][] x = matrix.asArray();
         Assert.assertTrue(matrix.rows == x.length && matrix.cols == x[0].length);
     }
 
-    @org.junit.jupiter.api.Test
-    void get() {
+    @org.junit.Test
+    public void get() {
         double val = 2.5;
         Matrix matrix =  new Matrix(2,2);
         matrix.set(1,1,val);
         Assert.assertTrue(val == matrix.get(1,1) );
     }
 
-    @org.junit.jupiter.api.Test
-    void set() {
+    @org.junit.Test
+    public void set() {
         double val = 2.5;
         Matrix matrix =  new Matrix(2,2);
         matrix.set(1,1,val);
         Assert.assertTrue(val == matrix.get(1,1) );
     }
 
-    @org.junit.jupiter.api.Test
-    void testToString() {
-        int numberOfCommas;
-        int numberOfBracekts;
+    @org.junit.Test
+    public void testToString() {
         Matrix matrix = new Matrix(new double[][]{{1},{1,2,4}});
+        int numberOfCommas = matrix.rows*(matrix.cols-1);
+        int numberOfBracekts = matrix.rows*2 + 2;
         String matrixString = matrix.toString();
-
+        int commas = 0;
+        int brackets = 0;
+        for(int i = 0; i < matrixString.length(); i++)
+        {
+            if(matrixString.charAt(i) == '[' || matrixString.charAt(i) == ']')
+                brackets++;
+            if(matrixString.charAt(i) == ',')
+                commas++;
+        }
+        Assert.assertTrue(commas == numberOfCommas && brackets == numberOfBracekts);
     }
 
-    @org.junit.jupiter.api.Test
-    void reshape() {
+    @org.junit.Test
+    public void reshape() {
+        double val = 2.5;
+        Matrix matrix =  new Matrix(3,3);
+        matrix.set(2,2,val);
+        matrix.reshape(1,9);
+        Assert.assertTrue(val == matrix.get(0,8) );
     }
 
-    @org.junit.jupiter.api.Test
-    void shape() {
+    @org.junit.Test
+    public void shape() {
     }
 
-    @org.junit.jupiter.api.Test
-    void add() {
+    @org.junit.Test
+    public void add() {
     }
 
-    @org.junit.jupiter.api.Test
-    void sub() {
+    @org.junit.Test
+    public void sub() {
     }
 
-    @org.junit.jupiter.api.Test
-    void mul() {
+    @org.junit.Test
+    public void mul() {
     }
 
-    @org.junit.jupiter.api.Test
-    void div() {
+    @org.junit.Test
+    public void div() {
     }
 
-    @org.junit.jupiter.api.Test
-    void testAdd() {
+    @org.junit.Test
+    public void testAdd() {
     }
 
-    @org.junit.jupiter.api.Test
-    void testSub() {
+    @org.junit.Test
+    public void testSub() {
     }
 
-    @org.junit.jupiter.api.Test
-    void testMul() {
+    @org.junit.Test
+    public void testMul() {
     }
 
-    @org.junit.jupiter.api.Test
-    void testDiv() {
+    @org.junit.Test
+    public void testDiv() {
     }
 
-    @org.junit.jupiter.api.Test
-    void dot() {
+    @org.junit.Test
+    public void dot() {
     }
 
-    @org.junit.jupiter.api.Test
-    void main() {
+    @org.junit.Test
+    public void main() {
     }
 }
