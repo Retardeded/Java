@@ -1,21 +1,30 @@
+import java.io.PrintStream;
+
 public class Paragraph extends Section{
 
-    String text;
+    String content;
     String title;
 
-    void setContent(String text)
+    Paragraph setContent(String content)
     {
-        this.text = text;
+        this.content = content;
+        return this;
     }
 
-    void writeHTML(String text)
+    void writeHTML(PrintStream out)
     {
         String mark1 = "<p>";
         String mark2 = "</p>";
-        this.text = mark1 + text + mark2;
+        this.content = mark1 + content + mark2;
+        out.print(content);
     }
 
-    Paragraph(String title) {
-        this.title = title;
+    Paragraph(String content) {
+        this.content = content;
     }
+
+    Paragraph(){
+
+    }
+
 }

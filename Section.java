@@ -29,8 +29,16 @@ public class Section extends Document {
         paragraps.add(p);
         return this;
     }
+
     void writeHTML(PrintStream out){
-        String mark1 = "<section>";
-        String mark2 = "</section>";
+        String h1 = "<div><h1>"+title+"</h1></div>\n";
+        String section1 = "<section>";
+        String section2 = "</section>\n";
+        out.printf(h1);
+        out.printf(section1);
+        for (Paragraph paragraph : paragraps) {
+            paragraph.writeHTML(out);
+        }
+        out.printf(section2);
     }
 }
