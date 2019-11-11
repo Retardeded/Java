@@ -23,8 +23,5 @@ public class Paragraph extends Section{
         this.content = content;
     }
 
-    Paragraph(){
-
-    }
 
 }

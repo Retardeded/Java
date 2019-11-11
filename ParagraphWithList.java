@@ -4,43 +4,34 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
+import java.io.PrintStream;
+
+
 public class ParagraphWithList extends Paragraph{
+    private UnorderedList ul = new UnorderedList();
 
-    UnorderedList unorderedList;
-
-    ParagraphWithList() {
-
+    public ParagraphWithList(String content) {
+        super(content);
     }
 
-    public ParagraphWithList(String text, UnorderedList list) {
-        this.content = text;
-        this.unorderedList = list;
+    public ParagraphWithList() {
+        super("Paragraph");
     }
 
-    ParagraphWithList setContent(String text)
-    {
-
+    public ParagraphWithList setContent(String newContent) {
+        super.setContent(newContent);
         return this;
     }
 
-    void writeHTML(PrintStream out)
-    {
-        String mark1 = "<p>";
-        String mark2 = "</p>";
-        this.content = mark1 + content + mark2;
-        out.print(content);
-        unorderedList.writeHTML(out);
+    @Override
+    void writeHTML(PrintStream out) {
+        super.writeHTML(out);
+        ul.writeHTML(out);
     }
 
-    ParagraphWithList addListItem(String newItem) {
-        var newItems = new UnorderedList();
-        newItems.add(newItem);
-        return new ParagraphWithList(content, newItems);
+    public ParagraphWithList addListItem(String item) {
+        ul.addItem(item);
+        return this;
     }
-
 }
-
-
-// mrcszk
-// https://zaworski.pl/bd/lab05/lab05.txt
 
