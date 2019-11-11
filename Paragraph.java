@@ -14,7 +14,7 @@ public class Paragraph extends Section{
     void writeHTML(PrintStream out)
     {
         String mark1 = "<p>";
-        String mark2 = "</p>";
+        String mark2 = "</p>\n";
         this.content = mark1 + content + mark2;
         out.print(content);
     }

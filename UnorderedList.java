@@ -16,6 +16,6 @@ public class UnorderedList {
         out.print("<ul>\n");
         for(ListItem x:list)
             x.writeHTML(out);
-        out.print("\n</ul>");
+        out.print("\n</ul>\n");
     }
 }
