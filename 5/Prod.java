@@ -9,19 +9,27 @@ public class Prod extends Node {
 
     public Prod() {}
 
-    public Prod(Node... nodes) {
-        args.addAll(Arrays.asList(nodes));
+    Prod(Node n1){
+        args.add(n1);
     }
 
-    public Prod(double... constants) {
-        args.addAll(Arrays.stream(constants).mapToObj(Constant::new).collect(Collectors.toList()));
+    Prod(double c){
+        //wywołaj konstruktor jednoargumentowy przekazując new Constant(c)
+        args.add(new Constant(c));
     }
 
-    public Prod(double constant, Node node) {
-        this(new Constant(constant), node);
+    Prod(Node n1, Node n2){
+        args.add(n1);
+        args.add(n2);
     }
 
-    public Prod multiply(Node... nodes) {
+    Prod(double c, Node n){
+        args.add(n);
+        args.add(new Constant(c));
+        //wywołaj konstruktor dwuargumentowy
+    }
+
+    public Prod multiply(Node nodes) {
         args.addAll(Arrays.asList(nodes));
         return this;
     }

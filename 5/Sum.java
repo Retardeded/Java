@@ -9,7 +9,7 @@ public class Sum extends Node {
 
     public Sum() {}
 
-    public Sum(Node... nodes) {
+    public Sum(Node nodes) {
         this.add(nodes);
     }
 
@@ -21,13 +21,13 @@ public class Sum extends Node {
         this.add(constant, node);
     }
 
-    public Sum add(Node... nodes) {
-        args.addAll(Arrays.asList(nodes));
+    Sum add(Node n){
+        args.add(n);
         return this;
     }
 
-    public Sum add(double... constants) {
-        args.addAll(Arrays.stream(constants).mapToObj(Constant::new).collect(Collectors.toList()));
+    Sum add(double c){
+        args.add(new Constant(c));
         return this;
     }
 
@@ -47,12 +47,12 @@ public class Sum extends Node {
     }
 
     @Override
-    Node diff(Variable variable) {
-        return new Sum(
-                args.stream()
-                        .filter(node -> !node.isDiffZero(variable))
-                        .map(node -> node.diff(variable))
-                        .toArray(Node[]::new));
+    Node diff(Variable var) {
+        Sum r = new Sum();
+        for(Node n:args){
+            r.add(n.diff(var));
+        }
+        return r;
     }
 
     @Override
